@@ -1,0 +1,36 @@
+using HashTable;
+using System.Collections;
+
+namespace Hashtables
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Hashtable studentstable = new Hashtable();
+
+            string[] students = { "Maria","Jason","Clara","Steve"}; // can convert to user input
+            float[] studentsGPA = { 98, 76, 43, 55 }; 
+
+            //list for instantiation in for
+            List<Student> stud = new List<Student>();
+
+
+            for (int i = 0; i < students.Length; i++)
+            {
+                stud.Add(new Student { Id = i + 1, Name = students[i], GPA = studentsGPA[i] });
+                Console.Write("{{ {0}, {1}, {2} }}", stud[i].Id, stud[i].Name, stud[i].GPA);
+                studentstable.Add(stud[i].Id, new Student { Id = i + 1, Name = students[i], GPA = studentsGPA[i] });
+            }
+
+            Console.WriteLine("\n\nTesting retriving data added to hashtable...");
+
+            //retriving data from Hashtable
+            for (int j = 0; j < students.Length; j++)
+            {
+                Student storedStudent = (Student)studentstable[j+1];
+                Console.WriteLine("\nId is {0}, Name is {1}, GPA is {2}", storedStudent.Id, storedStudent.Name, storedStudent.GPA);
+            }
+        }
+    }
+}
